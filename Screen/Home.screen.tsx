@@ -1,12 +1,14 @@
 
 import React from 'react';
-import { View, Text} from 'react-native';
+import { View, Text, Button} from 'react-native';
 import {NavBar} from '../Component/Navbar.component'
 import Icon from 'react-native-vector-icons/Ionicons';
 
 interface HomeScreenProps extends React.Props<any> {
     navigation: any
 }
+
+ 
 
 export class HomeScreen extends React.Component<HomeScreenProps, any> {
     static navigationOptions = {
@@ -21,9 +23,14 @@ export class HomeScreen extends React.Component<HomeScreenProps, any> {
     render() {
       const navigation = this.props.navigation;
       return (
-        <View>
-          <NavBar navigation={navigation}/>
-          <Text>This is the {navigation.state.routeName} screen</Text>
+        <View style={{ flex: 1}}>
+          <View style={{flex: 0.1}}>
+            <NavBar  navigation={navigation}/>
+          </View>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>This is the {navigation.state.routeName} screen</Text>
+            <Button  title="Go to Profile" onPress={() => navigation.navigate('Profile')}/> 
+          </View>
         </View>
       );
     }
