@@ -1,21 +1,36 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {DashboardComponent} from './Component/Dashboard.component'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <DashboardComponent name='Dashboard'></DashboardComponent>
-    </View>
-  );
+
+
+
+import {createStackNavigator} from 'react-navigation-stack';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import {createAppContainer, } from 'react-navigation';
+import {HomeScreen} from './Screen/Home.screen';
+import {ProfileScreen} from './Screen/Profile.screen';
+
+import React from 'react';
+import { Button} from 'react-native';
+
+
+let screens = {
+  Home: {
+    screen: HomeScreen
+  },
+  Profile: {
+    screen: ProfileScreen
+  }
+};
+
+let defaultOptions = {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      //header: null
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+const TopNav = createStackNavigator ( screens, defaultOptions);
+const BottomNav = createMaterialBottomTabNavigator({TopNav});
+
+const App = createAppContainer(BottomNav);
+export default App;
