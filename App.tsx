@@ -1,21 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {DashboardComponent} from './Component/Dashboard.component'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <DashboardComponent name='Dashboard'></DashboardComponent>
-    </View>
-  );
+
+
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import {createAppContainer } from 'react-navigation';
+import {HomeScreen} from './Screens/Home.screen';
+import {ProfileScreen} from './Screens/Profile.screen';
+
+
+let routes = {
+  Home: { screen: HomeScreen },
+  Profile: { screen: ProfileScreen},
+};
+
+const TabNavigatorOptions = {  
+  initialRouteName: "Home",  
+  activeColor: 'white',  
+  inactiveColor: 'lightgray',
+  swipeEnabled: true,
+  lazy: true,
+  defaultNavigationOptions: {
+    tabBarVisible: true
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const BottomNav = createMaterialBottomTabNavigator(routes, TabNavigatorOptions);
+
+const App = createAppContainer(BottomNav);
+export default App;
