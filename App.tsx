@@ -1,25 +1,13 @@
 
 
 
-
-import {createStackNavigator} from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { createMaterialTopTabNavigator  } from 'react-navigation-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {createAppContainer } from 'react-navigation';
-import {HomeScreen} from './Screen/Home.screen';
-import {ProfileScreen} from './Screen/Profile.screen';
-
-import React from 'react';
-import { View} from 'react-native';
+import {HomeScreen} from './Screens/Home.screen';
+import {ProfileScreen} from './Screens/Profile.screen';
 
 
-/*
-        barStyle: { backgroundColor: '#f69b31' },
-        activeColor: '#f60c0d',  
-        inactiveColor: '#f65a22',
-*/
-let screens = {
+let routes = {
   Home: { screen: HomeScreen },
   Profile: { screen: ProfileScreen},
 };
@@ -27,10 +15,15 @@ let screens = {
 const TabNavigatorOptions = {  
   initialRouteName: "Home",  
   activeColor: 'white',  
-  inactiveColor: 'lightgray', 
+  inactiveColor: 'lightgray',
+  swipeEnabled: true,
+  lazy: true,
+  defaultNavigationOptions: {
+    tabBarVisible: true
+  }
 }
-//const TopNav = createMaterialTopTabNavigator ( screens, defaultOptions);
-const BottomNav = createMaterialBottomTabNavigator(screens, TabNavigatorOptions);
+
+const BottomNav = createMaterialBottomTabNavigator(routes, TabNavigatorOptions);
 
 const App = createAppContainer(BottomNav);
 export default App;
