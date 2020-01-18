@@ -1,4 +1,4 @@
-#from flask import Flask
+from flask import Flask
 import math
 import numpy
 import os
@@ -12,9 +12,6 @@ def gcd(a, b):
 
 def decrypt(pk, ciphertext):
     key, n = pk
-#    print(key)
-#    print(n)
-#    print(ciphertext)
     plain = [chr( (char ** key) % n) for char in ciphertext]
     return ''.join(plain)
 
@@ -60,7 +57,9 @@ def find_prime(maximum=100):
 def gen_prime_keys(maximum=100):
     p = find_prime(maximum)
     q = find_prime(maximum)
-
+    print("p & q")
+    print(p)
+    print(q)
     n = p*q
     
     mul = (p-1)*(q-1)
@@ -90,37 +89,41 @@ def gen_decriptkey(d, n, m):
 
     return decrypt((d, n),m)
 
-#app = Flask(__name__)
-#app.config.from_object(os.environ['APP_SETTINGS'])
+app = Flask(__name__)
 
-#@app.route('/decript')
-#def get_realkey():
-#    return None
+@app.route('/decript')
+def get_realkey():
 
-#@app.route('/encript')
-#def get_enckey():
-#    return None
+    return None
 
-#@app.route('/genkey')
-#def gen_key():
-#    return None
+@app.route('/encript')
+def get_enckey():
 
-#@app.route('/check')
-#def check_device():
-#    return None
+    return None
 
-#@app.route('/<target>')
-#def routh_func(name):
-#    func = name
-#    return func()
+@app.route('/genkey')
+def gen_key():
+
+    return None
+
+@app.route('/check')
+def check_device():
+
+    return None
+
+@app.route('/<target>')
+def routh_func(name):
+
+    func = name
+    return func()
 
 if __name__ == '__main__':
-#app.run()
+    #app.run()
     m = "F2LWQR7FJWLM"
 
     print("RAW")
     print(m)
-    n, mul = gen_prime_keys(100)
+    n, mul = gen_prime_keys(1000)
     public = gen_publickey(n, mul)
     private = gen_privatekey(n, public, mul)
 
