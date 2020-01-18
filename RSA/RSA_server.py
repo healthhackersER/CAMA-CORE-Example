@@ -4,7 +4,6 @@ import numpy
 import os
 import random
 
-
 def gcd(a, b):
     while b!=0:
         a, b = b, a%b
@@ -91,31 +90,32 @@ def gen_decriptkey(d, n, m):
 
 app = Flask(__name__)
 
-@app.route('/decript')
-def get_realkey():
+@app.route('/genkey')
+def gen_key():
+    return gen_prime_keys(10000)
 
-    return None
+@app.route('/send_public')
+def send_publickey():
+    return gen_publickey(n, mul)
+
+@app.route('/send_private')
+def send_privatekey():
+    return gen_privatekey(n, public, mul)
 
 @app.route('/encript')
 def get_enckey():
+    return gen_encriptkey(public, n, m )
 
-    return None
-
-@app.route('/genkey')
-def gen_key():
-
-    return None
+@app.route('/decript')
+def get_deckey():
+    return gen_decriptkey(private, n, m)
 
 @app.route('/check')
 def check_device():
-
-    return None
-
-@app.route('/<target>')
-def routh_func(name):
-
-    func = name
-    return func()
+    if input_key != deckey:
+        return False
+    else   
+        return True
 
 if __name__ == '__main__':
     #app.run()
@@ -123,7 +123,7 @@ if __name__ == '__main__':
 
     print("RAW")
     print(m)
-    n, mul = gen_prime_keys(1000)
+    n, mul = gen_prime_keys(3000)
     public = gen_publickey(n, mul)
     private = gen_privatekey(n, public, mul)
 
