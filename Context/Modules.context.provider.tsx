@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import { AppbarContent } from 'react-native-paper/lib/typescript/src/components/Appbar/AppbarContent';
+import {Module} from '../Models/Module.model';
 
-;
-
-const ModuleContext = React.createContext();
+export const ModuleContext = React.createContext();
 
 export class ModuleProvider extends Component {
     state = {
         number: 10,
+        $Modules: new Array<Module>(),
         inc: () => {
             this.setState({number: this.state.number + 1});
         }
@@ -18,6 +17,7 @@ export class ModuleProvider extends Component {
         </ModuleContext.Provider>
     };
 }
+
 const Green = () => (
     <div className="green" style={{ backgroundColor: 'green', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ModuleContext.Consumer>

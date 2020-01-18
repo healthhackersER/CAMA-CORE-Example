@@ -1,4 +1,4 @@
-export interface Module {
+export class Module {
     icon: string;
     label: string;
     description: string;

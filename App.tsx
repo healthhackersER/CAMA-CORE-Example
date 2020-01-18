@@ -6,12 +6,13 @@ import {createAppContainer } from 'react-navigation';
 import {HomeScreen} from './Screens/Home.screen';
 import {ProfileScreen} from './Screens/Profile.screen';
 import { ModuleManagerScreen } from './Screens/ModuleManager.screen';
-
+import { ModuleDashboardScreen } from './Screens/ModuleDashboard.screen';
 
 let routes = {
   Home: { screen: HomeScreen },
   Profile: { screen: ProfileScreen},
-  Modules: {screen: ModuleManagerScreen}
+  Modules: {screen: ModuleManagerScreen},
+  ModuleDashboard: {screen: ModuleDashboardScreen}
 };
 
 const TabNavigatorOptions = {  
