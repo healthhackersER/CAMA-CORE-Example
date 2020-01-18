@@ -89,7 +89,7 @@ def gen_decriptkey(d, n, m):
     return decrypt((d, n),m)
 
 app = Flask(__name__)
-
+# need to implement POST and GET method
 @app.route('/genkey')
 def gen_key():
     return gen_prime_keys(10000)
@@ -123,6 +123,8 @@ if __name__ == '__main__':
 
     print("RAW")
     print(m)
+    
+    print("GET PRIME NUMBERS")
     n, mul = gen_prime_keys(8000)
     public = gen_publickey(n, mul)
     private = gen_privatekey(n, public, mul)
