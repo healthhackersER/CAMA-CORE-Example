@@ -114,7 +114,7 @@ def get_deckey():
 def check_device():
     if input_key != deckey:
         return False
-    else   
+    else:   
         return True
 
 if __name__ == '__main__':
@@ -123,7 +123,7 @@ if __name__ == '__main__':
 
     print("RAW")
     print(m)
-    n, mul = gen_prime_keys(3000)
+    n, mul = gen_prime_keys(8000)
     public = gen_publickey(n, mul)
     private = gen_privatekey(n, public, mul)
 
