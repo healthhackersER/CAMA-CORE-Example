@@ -92,7 +92,12 @@ app = Flask(__name__)
 # need to implement POST and GET method
 @app.route('/genkey')
 def gen_key():
-    return gen_prime_keys(10000)
+    # choose as more as your computing device can possible
+    # big number
+    # make more security  
+    maximum = request.args.get('prime_maximum', type=str)
+    
+    return gen_prime_keys(maximum)
 
 @app.route('/send_public')
 def send_publickey():
@@ -112,7 +117,14 @@ def get_deckey():
 
 @app.route('/check')
 def check_device():
-    if input_key != deckey:
+    # don't save device_id on server
+    # save only public_key on server and device
+    # and broadcast the public_key to find what device have the public key
+    # that makes double check to make more security
+    decoded_key = request.args.get('decoded_key', type=str)
+    device_id = request.args.get('device_id', type=str)
+    
+    if device_id != decoded_key:
         return False
     else:   
         return True
