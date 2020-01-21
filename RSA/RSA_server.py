@@ -1,4 +1,5 @@
 from flask import Flask
+import request
 import math
 import numpy
 import os
@@ -90,39 +91,82 @@ def gen_decriptkey(d, n, m):
 
 app = Flask(__name__)
 # need to implement POST and GET method
-@app.route('/genkey')
-def gen_key():
+@app.route('/make_primekey')
+def make_primekey():
     # choose as more as your computing device can possible
     # big number
     # make more security  
-    maximum = request.args.get('prime_maximum', type=str)
+    data = request.get_json()    
+    maximum = data['prime_maximum']
     
-    return gen_prime_keys(maximum)
+    n, mul = gen_prime_keys(int(maximum))
+    
+    return [str(n), str(mul)]
 
-@app.route('/send_public')
-def send_publickey():
-    return gen_publickey(n, mul)
+@app.route('/make_publickey')
+def make_publickey():
+    data = request.get_json()
+    
+    n = data['first_prime_n']
+    mul = data['second_prime_mul']
 
-@app.route('/send_private')
-def send_privatekey():
-    return gen_privatekey(n, public, mul)
+    pub_key = gen_publickey(int(n), int(mul))
+    pub_key = [str(i) for i in pub_key]
 
-@app.route('/encript')
-def get_enckey():
-    return gen_encriptkey(public, n, m )
+    return pub_key
 
-@app.route('/decript')
-def get_deckey():
-    return gen_decriptkey(private, n, m)
+@app.route('/make_privatekey')
+def make_privatekey():
+    data = request.get_json()
+    
+    n = data['first_prime_n']
+    mul = data['second_prime_mul']
+    pub_key = data['public_key']
+    pub_key= [int(i) for i in pub_key]
 
-@app.route('/check')
+    pri_key= gen_privatekey(int(n), pub_key, int(mul))
+    pri_key = [str(i) for i in pri_key]
+
+    return pri_key
+
+@app.route('/enc_key')
+def enc_key():
+    data = request.get_json()
+    
+    key = data['key_to_encode']
+    n = data['first_primeMul_n']
+    pub_key = data['public_key']
+    pub_key = [int(i) for i in pub_key]
+
+    enc_key = gen_encriptkey(pub_key, int(n), key )
+    enc_key = [str(i) for i in enc_key]
+    
+    return enc_key
+
+@app.route('/dec_key')
+def dec_key():
+    data = request.get_json()
+    
+    enc_key = data['key_to_decode']
+    enc_key = [int(i) for i in enc_key]
+    n = data['first_primeMul_n']
+    pri_key = data['private_key']
+    pri_key = [int(i) for i in pri_key]
+
+    dec_key = gen_decriptkey(pri_key, int(n), enc_key)
+
+    return dec_key
+
+@app.route('/check_id_key')
 def check_device():
     # don't save device_id on server
     # save only public_key on server and device
     # and broadcast the public_key to find what device have the public key
     # that makes double check to make more security
-    decoded_key = request.args.get('decoded_key', type=str)
-    device_id = request.args.get('device_id', type=str)
+    data = request.get_json()
+
+    dec_key = data['decoded_key']
+    device_id = data['device_id']
     
     if device_id != decoded_key:
         return False
@@ -131,7 +175,7 @@ def check_device():
 
 if __name__ == '__main__':
     # if you want to run as a server remove comment mark of the line below 
-    #app.run()
+    # app.run(debug=True, port=5000) need to port forwarding to 5000 or any number you picked
     
     # DEMO OF THE ORDER TO EXECUTE
     m = "F2LWQR7FJWLM"
