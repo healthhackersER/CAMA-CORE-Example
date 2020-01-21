@@ -130,7 +130,10 @@ def check_device():
         return True
 
 if __name__ == '__main__':
+    # if you want to run as a server remove comment mark of the line below 
     #app.run()
+    
+    # DEMO OF THE ORDER TO EXECUTE
     m = "F2LWQR7FJWLM"
 
     print("RAW")
