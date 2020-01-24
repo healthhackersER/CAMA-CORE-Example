@@ -1,21 +1,14 @@
-# CAMA-CORE-Example
-
-# Getting Started
-# CORE Application - React-Native
+# CAMA-CORE
 The CORE of the CAMA application is build using React-Native and the EXPO
 
-# Getting Started
+# Install
+1. [Getting-Started: React-Native](https://facebook.github.io/react-native/docs/getting-started)
+
 ## Pre-requisities
 - **Node.js**: In order to install Expo CLI you will need to have Node.js (we recommend the latest stable version- but the maintenance and active LTS releases will also work) installed on your computer. [Download the recommended version of Node.js.](https://nodejs.org/en/)
 - **Git**: Additionally, you'll need Git to create new projects. [You can download Git from here.](https://git-scm.com/)
 
-1. [React-Native](https://facebook.github.io/react-native/docs/getting-started)
-2. [EXPO](https://docs.expo.io/versions/v36.0.0/)
-
-## Install
-1. [Getting-Started: React-Native](https://facebook.github.io/react-native/docs/getting-started)
-
-## Getting Started
+# Getting Started
 1. [**React Native**](https://facebook.github.io/react-native/)
    > _React Native_ is like _React_, but it uses native components instead of web components as building blocks. 
 So to understand the basic structure of a React Native app, you need to understand some of the basic React concepts, like JSX, components, ``state``, and ``props``.   
