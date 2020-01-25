@@ -7,7 +7,7 @@ The CORE of the CAMA application is build using React-Native and the EXPO
 2. Run npm installer  
    `npm install`
 1. Run Application  
-   `npm start` or `npm run web`
+   - `npm run web` 
 
 ## Pre-requisities
 - **Node.js**: In order to install Expo CLI you will need to have Node.js (we recommend the latest stable version- but the maintenance and active LTS releases will also work) installed on your computer. [Download the recommended version of Node.js.](https://nodejs.org/en/)
