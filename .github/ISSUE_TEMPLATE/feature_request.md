@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 # Problem
-_As a ´´<role>´´ I can ´´<capability>´´, so that ´´<receive benefit>´´_
+_As a ``<role>`` I can ``<capability>``, so that ``<receive benefit>``_
 
 # Soltion
 Describe what you want to do
