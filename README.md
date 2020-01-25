@@ -2,12 +2,12 @@
 The CORE of the CAMA application is build using React-Native and the EXPO
 
 # Install
-1. Clone Repository [HowTo GIT](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)  
+1. Clone Repository - [HowTo GIT](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)  
     `git clone https://github.com/healthhackersER/CAMA-CORE-Example.git`
 2. Run npm installer  
    `npm install`
-1. Run Application  
-   - `npm run web` 
+1. Run Application - Runs [Expo](https://docs.expo.io/versions/v33.0.0/introduction/running-in-the-browser/) in Browser  
+   `npm run web`
 
 ## Pre-requisities
 - **Node.js**: In order to install Expo CLI you will need to have Node.js (we recommend the latest stable version- but the maintenance and active LTS releases will also work) installed on your computer. [Download the recommended version of Node.js.](https://nodejs.org/en/)
