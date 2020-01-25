@@ -5,14 +5,12 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import {createAppContainer } from 'react-navigation';
 import {HomeScreen} from './Screens/Home.screen';
 import {ProfileScreen} from './Screens/Profile.screen';
-import { ModuleManagerScreen } from './Screens/ModuleManager.screen';
-import { ModuleDashboardScreen } from './Screens/ModuleDashboard.screen';
+import {ModuleScreen} from './Screens/Module.screen';
 
 let routes = {
   Home: { screen: HomeScreen },
   Profile: { screen: ProfileScreen},
-  Modules: {screen: ModuleManagerScreen},
-  ModuleDashboard: {screen: ModuleDashboardScreen}
+  Modules: {screen: ModuleScreen}
 };
 
 const TabNavigatorOptions = {  
