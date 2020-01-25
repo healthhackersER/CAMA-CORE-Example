@@ -16,7 +16,7 @@ The CORE of the CAMA application is build using React-Native and the EXPO
 # Getting Started
 1. [**React Native**](https://facebook.github.io/react-native/)
    > _React Native_ is like _React_, but it uses native components instead of web components as building blocks. 
-So to understand the basic structure of a React Native app, you need to understand some of the basic React concepts, like JSX, components, ``state``, and ``props``.   
+So to understand the basic structure of a React Native app, you need to understand some of the basic React concepts, like [JSX](README.md), components, ``state``, and ``props``.   
    [To learn more about this you can find a tutorial here.](https://facebook.github.io/react-native/docs/tutorial)
 2. [**Expo**](https://expo.io/) 
    > There's no need to install anything or even understand everything here, 
