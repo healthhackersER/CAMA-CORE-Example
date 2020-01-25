@@ -31,6 +31,7 @@ interface DatabaseScreenProps extends React.Props<any> {
 export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
   constructor(props) {
     super(props);
+    // Set startValue of the textinput
     this.state = {startValue: "Teststrings", value: "", databaseentries: []};
   }
 
