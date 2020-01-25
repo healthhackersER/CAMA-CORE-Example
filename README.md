@@ -1,6 +1,6 @@
 # CAMA-CORE
 The CORE of the CAMA application is build using React-Native and the EXPO
-
+asdasdfasdf
 # Install
 1. Clone Repository - [HowTo GIT](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)  
     `git clone https://github.com/healthhackersER/CAMA-CORE-Example.git`
