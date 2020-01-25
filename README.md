@@ -25,9 +25,13 @@ In the same way that getting a quick tour of Paris won't make you an expert on P
 this walkthrough serves to help you identify a few landmarks and the most important areas in the managed workflow. 
 You can do a walkthrough of the bare workflow later on.
    [To learn more about this you can find the walkthrough here.](https://docs.expo.io/versions/v36.0.0/introduction/walkthrough/)
-3. [**TypeScript](https://www.typescriptlang.org/)
+3. [**TypeScript**](https://www.typescriptlang.org/)
    > [TypeScript](https://www.typescriptlang.org/) is a language which extends JavaScript by adding type definitions.  
    > [Here you can find a documentation how to develop with TypeScript and React-Native](https://facebook.github.io/react-native/docs/typescript)   
+3. [**GitFlow - Branching Model**](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+    > Gitflow Workflow is a Git workflow design that was first published and made popular by Vincent Driessen at nvie. The Gitflow Workflow defines a strict branching model designed around the project release. This provides a robust framework for managing larger projects.  
+    
+    > The core idea behind the [**Feature Branch Workflow**](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) is that all feature development should take place in a dedicated branch instead of the master branch. This encapsulation makes it easy for multiple developers to work on a particular feature without disturbing the main codebase. It also means the master branch will never contain broken code, which is a huge advantage for continuous integration environments.
 
    
  
