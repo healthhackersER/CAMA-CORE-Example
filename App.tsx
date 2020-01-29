@@ -5,15 +5,16 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import {createAppContainer } from 'react-navigation';
 import {HomeScreen} from './Screens/Home.screen';
 import {ProfileScreen} from './Screens/Profile.screen';
-
+import { DatabaseScreen } from './Screens/Database.screen';
 
 let routes = {
   Home: { screen: HomeScreen },
   Profile: { screen: ProfileScreen},
+  Database: {screen: DatabaseScreen}
 };
 
 const TabNavigatorOptions = {  
-  initialRouteName: "Home",  
+  initialRouteName: "Database",  
   activeColor: 'white',  
   inactiveColor: 'lightgray',
   swipeEnabled: true,
