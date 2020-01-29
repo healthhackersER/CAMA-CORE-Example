@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { View, TextInput } from 'react-native';
 
 
-interface MetaInformationFieldsProps extends React.Props<any> {
+interface MetaInfoInputProps extends React.Props<any> {
     value: string
     valueChange:any
 }
 
-export class MetaInformationFields extends React.Component<MetaInformationFieldsProps, any> {
+export class MetaInfoInput extends React.Component<MetaInfoInputProps, any> {
 
     constructor(props) {
         super(props);

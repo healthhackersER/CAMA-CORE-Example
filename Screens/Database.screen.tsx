@@ -1,8 +1,8 @@
 
-import React, { Ref } from 'react';
-import { View, Text, FlatList, Button, Platform} from 'react-native';
+import React from 'react';
+import {View, Text, FlatList, Button, Platform} from 'react-native';
 import {NavBar} from '../Component/Navbar.component'
-import {MetaInformationFields} from './FormMetainfo/MetaInformation.fields'
+import {MetaInfoInput} from './FormMetaInfo/MetaInfo.input.component'
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as SQLite from "expo-sqlite";
 
@@ -55,13 +55,7 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
       null,
       console.log("Database Entries added")
     );
-      
-      //db.exec([{ sql: 'INSERT 1,' + abc + '" INTO Test', args: [] }], false, () => {});
-      //var mylen = () => {db.transaction((tx) => {
-      //  tx.executeSql('SELECT * FROM Test', [], (tx, results) => {
-      //    results.rows.length;
-      //  });
-      //})}
+    
     } else {
       if (['ios', 'android'].includes(Platform.OS) ){
         console.warn("Please just create a database entry with a value.")
@@ -107,8 +101,9 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
           <View>
           {
             ['ios', 'android'].includes(Platform.OS) ? 
-            <View><MetaInformationFields valueChange={(text) => { this.setValue(text) }} value={this.state.startValue}/>
-            <Button title="INSERT" onPress={() =>this.onTap()}></Button>
+            <View>
+              <MetaInfoInput valueChange={(text) => { this.setValue(text) }} value={this.state.startValue}/>
+              <Button title="INSERT" onPress={() =>this.onTap()}></Button>
             </View>: 
             <Text>SQLite not supported on your system</Text>
           }
