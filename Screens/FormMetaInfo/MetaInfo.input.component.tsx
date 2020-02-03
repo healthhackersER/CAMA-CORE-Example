@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, TextInput } from 'react-native';
+import React from 'react';
+import {TextInput } from 'react-native';
 
 
 interface MetaInfoInputProps extends React.Props<any> {
