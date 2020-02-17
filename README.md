@@ -8,7 +8,7 @@ and there are interesting challenges waiting for :point_right:**YOU**:point_left
 <sup>Technical</sup>
 ---
 We want to hack into the [**CAMA Document Store [Here]**](https://github.com/healthhackersER/CAMA-CORE-Example/projects/7)   
-- Enabling cancer patients to store their documents and enrich them with additional information.
+> Enabling cancer patients to store their documents and enrich them with additional information.
 
 :heavy_check_mark: We already got an native database demo implementation. This needs to be filled with live now!
 
