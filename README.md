@@ -17,8 +17,8 @@ We want to hack into the [**CAMA Document Store [Here]**](https://github.com/hea
 :question: Curious how to access the native file system?  
 :question: Curious how to setup a native database?  
 
-**Goals**
-<sup>General</sup>
+
+## Goals <sup>General</sup>
 
 [We noted our most imporant challanges in the Wiki](https://github.com/healthhackersER/CAMA-CORE-Example/wiki/Questions-to-solve)
 
