@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { View, Text, Button} from 'react-native';
-import {NavBar} from '../Component/Navbar.component'
+import { View, SafeAreaView, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {Module} from '../Component/Module.component';
 
 interface HomeScreenProps extends React.Props<any> {
     navigation: any
@@ -23,15 +23,15 @@ export class HomeScreen extends React.Component<HomeScreenProps, any> {
     render() {
       const navigation = this.props.navigation;
       return (
-        <View style={{ flex: 1}}>
-          <View style={{flex: 0.1}}>
-            <NavBar  navigation={navigation}/>
-          </View>
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>This is the {navigation.state.routeName} screen</Text>
-            <Button  title="Go to Profile" onPress={() => navigation.navigate('Profile')}/> 
-          </View>
-        </View>
+        <SafeAreaView style={styles.container}>
+           <Module uri="https://www.healthhackers.de/cancermanagement/"></Module>
+        </SafeAreaView>
       );
     }
   }
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+  });

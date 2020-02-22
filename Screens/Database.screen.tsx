@@ -2,7 +2,7 @@
 import React from 'react';
 import {View, Text, FlatList, Button, Platform} from 'react-native';
 import {NavBar} from '../Component/Navbar.component'
-import {MetaInfoInput} from './FormMetaInfo/MetaInfo.input.component'
+import {MetaInfoInput} from '../Component/MetaInfo.input.component'
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as SQLite from "expo-sqlite";
 
