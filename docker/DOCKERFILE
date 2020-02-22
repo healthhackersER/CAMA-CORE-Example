@@ -1,21 +1,7 @@
 LABEL maintainer=omelisra123@gmail.com
 #https://hub.docker.com/r/patwoz/expo-cli
 #baseline of this DOCKERFILE come from this repo
-
-ADD file ... in /
-CMD ["/bin/sh"]
-ENV NODE_VERSION=12.16.1
-/bin/sh -c addgroup -g 1000
-ENV YARN_VERSION=1.22.0
-/bin/sh -c apk add --no-cache
-COPY file:238737301d47304174e4d24f4def935b29b3069c03c72ae8de97d94624382fce in /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["node"]
-/bin/sh -c apk add --no-cache
-COPY file:d66543d68c04b3faebb6060dfa39aabab21ffae5b7f014696c00a0938ac9db62 in /
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["--help"]
-#previous version of expo-cli from patwoz
+FROM patwoz/expo-cli:3 
 
 RUN mkdir/CAMA
 WORKDIR /CAMA
