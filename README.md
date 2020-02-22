@@ -1,3 +1,43 @@
+
+Dear **CAMA Hackers** & **Community Members**
+
+The next hackday is coming …  
+and there are interesting challenges waiting for :point_right:**YOU**:point_left:
+
+**Goals**
+<sup>Technical</sup>
+---
+We want to hack into the [**CAMA Document Store [Here]**](https://github.com/healthhackersER/CAMA-CORE-Example/projects/7)   
+> Enabling cancer patients to store their documents and enrich them with additional information.
+
+:heavy_check_mark: We already got an native database demo implementation. This needs to be filled with live now!
+
+:question: Curious how to access the native file system?  
+:question: Curious how to access the native camera environment?  
+:question: Curious how to setup a native database?  
+:question: Curious how to design & create an intuitive interface?  
+
+**Who should be interested?**
+---
+
+Want to learn HowTo develop Web Apps?
+<sup>(**Html5, CSS, JavaScript**)</sup>  
+Want to learn HowTo develop iOS and Android Apps?
+<sup>(**React-Native**)</sup>  
+Want to learn HowTo create mockups or wireframes?
+<sup>(**UI/UX**)</sup>  
+Want to learn HowTo structure projects in a community environment?
+<sup>(**Project Management, Product Ownership**)</sup>  
+Want to learn HowTo innovate in a customer centric approach?
+<sup>(**CoCreation,  User Centered Design, Requirements Engineering**)</sup>  
+
+**You want to contribute or enhance your skills and change the world of cancer patients?**
+---
+You are not sure how you can contribute? **YES YOU CAN!**
+> Don't hesitate and drop a messages in our [SLACK Help Channel !!!](https://healthhackerserlangen.slack.com/archives/CU3JCK08Y)
+
+---
+
 # CAMA-CORE
 The CORE of the CAMA application is build using React-Native and the EXPO
 
