@@ -1,0 +1,1 @@
+docker run -p 19001:19001 -p 19002:19002 -p 19003:19003 -p 19004:19004 -p 19005:19005 -p 19006:19006 -v /docker_dir/project/CAMA-CORE-Example/docker:/CAMA/ -ti --name healthhacker healthhacker /bin/bash npm run web
