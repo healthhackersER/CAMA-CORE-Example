@@ -12,10 +12,11 @@ We want to hack into the [**CAMA Document Store [Here]**](https://github.com/hea
 
 :heavy_check_mark: We already got an native database demo implementation. This needs to be filled with live now!
 
-:question: Curious how to access the native file system?  
-:question: Curious how to access the native camera environment?  
-:question: Curious how to setup a native database?  
 :question: Curious how to design & create an intuitive interface?  
+:question: Curious how to access the native camera environment?  
+:question: Curious how to access the native file system?  
+:question: Curious how to setup a native database?  
+
 
 **Who should be interested?**
 ---
