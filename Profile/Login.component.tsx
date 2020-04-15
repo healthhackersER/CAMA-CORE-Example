@@ -5,14 +5,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button} from 'react-native-elements';
 
 export class Login extends Component<any> {
-    onLogin = (state) => {
+    state = store.getState();
+    onLogin = () => {
         store.dispatch({
             type: "LOGIN",
-            value: {email: state.email}
+            value: {email: this.state.email , password: this.state.password}
         })
     }
+
     render() {
-        const state = store.getState();
         store.subscribe(() => {
             this.setState(store.getState());
         });
@@ -25,8 +26,8 @@ export class Login extends Component<any> {
                         label='Email'
                         placeholder='Your Email'
                         keyboardType='email-address'
-                        onChangeText={text => state.email}
-                        defaultValue={state.email}
+                        onChangeText={text => this.state.email = text}
+                        defaultValue={this.state.email}
                         leftIcon={{ type: 'font-awesome', name: 'envelope' }}
                         leftIconContainerStyle={leftIconContainerStyle}
                     />
@@ -35,14 +36,15 @@ export class Login extends Component<any> {
                         secureTextEntry={true} 
                         leftIcon={{ type: 'font-awesome', name: 'unlock-alt' }}
                         leftIconContainerStyle={leftIconContainerStyle}
-                        value={state.password} 
+                        value={this.state.password} 
+                        onChangeText={text => this.state.password = text}
                     />
                 </View>
                 <View style={{flex: 0.2, width:'100%', justifyContent:'flex-end'}}>
                     <Button 
                         title="Login" 
                         type="outline"
-                        onPress={() =>this.onLogin(state)}>
+                        onPress={() => this.onLogin()}>
                         icon={<Icon name="unlock-alt" size={15} color="white"/>}
                     </Button>
                 </View>
