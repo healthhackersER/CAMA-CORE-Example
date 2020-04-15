@@ -19,24 +19,26 @@ export class Login extends Component<any> {
 
         const leftIconContainerStyle = {'margin-right': '15px'}
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding:'10px'}}>
-                <Input
-                    label='Email'
-                    placeholder='Your Email'
-                    keyboardType='email-address'
-                    onChangeText={text => state.email}
-                    defaultValue={state.email}
-                    leftIcon={{ type: 'font-awesome', name: 'envelope' }}
-                    leftIconContainerStyle={leftIconContainerStyle}
-                />
-                <Input 
-                    label='Password'
-                    secureTextEntry={true} 
-                    leftIcon={{ type: 'font-awesome', name: 'unlock-alt' }}
-                    leftIconContainerStyle={leftIconContainerStyle}
-                    value={state.password} 
-                />
-                <View style={{width:'100%', 'padding':'15px'}}>
+            <View style={{ flex: 1, padding:'10px'}}>
+                <View style={{flex: 0.8, alignItems: 'center', justifyContent: 'center', padding:'25%'}}>
+                    <Input
+                        label='Email'
+                        placeholder='Your Email'
+                        keyboardType='email-address'
+                        onChangeText={text => state.email}
+                        defaultValue={state.email}
+                        leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+                        leftIconContainerStyle={leftIconContainerStyle}
+                    />
+                    <Input 
+                        label='Password'
+                        secureTextEntry={true} 
+                        leftIcon={{ type: 'font-awesome', name: 'unlock-alt' }}
+                        leftIconContainerStyle={leftIconContainerStyle}
+                        value={state.password} 
+                    />
+                </View>
+                <View style={{flex: 0.2, width:'100%', justifyContent:'flex-end'}}>
                     <Button 
                         title="Login" 
                         type="outline"
