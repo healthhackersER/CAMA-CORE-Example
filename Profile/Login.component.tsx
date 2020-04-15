@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
-import {TextInput, View, Button, StyleSheet} from 'react-native';
+import {View } from 'react-native';
 import store from '../store/loginStore'
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input, Button} from 'react-native-elements';
 
 export class Login extends Component<any> {
-    state = store.getState()
-    setEmail = (email: string) =>{
-        this.state.email = email
-    }
-    onLogin = () => {
+    onLogin = (state) => {
         store.dispatch({
             type: "LOGIN",
-            value: {email: this.state.email}
+            value: {email: state.email}
         })
     }
     render() {
@@ -20,16 +17,32 @@ export class Login extends Component<any> {
             this.setState(store.getState());
         });
 
+        const leftIconContainerStyle = {'margin-right': '15px'}
         return (
-            <View style={{ flex: 1}}>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <TextInput
-                        placeholder="Your Email"
-                        onChangeText={text => this.setEmail(text)}
-                        defaultValue={state.email}
-                    />
-                    <TextInput secureTextEntry={true} value={state.password} />
-                    <Button title="Login" onPress={() =>this.onLogin()}></Button>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding:'10px'}}>
+                <Input
+                    label='Email'
+                    placeholder='Your Email'
+                    keyboardType='email-address'
+                    onChangeText={text => state.email}
+                    defaultValue={state.email}
+                    leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+                    leftIconContainerStyle={leftIconContainerStyle}
+                />
+                <Input 
+                    label='Password'
+                    secureTextEntry={true} 
+                    leftIcon={{ type: 'font-awesome', name: 'unlock-alt' }}
+                    leftIconContainerStyle={leftIconContainerStyle}
+                    value={state.password} 
+                />
+                <View style={{width:'100%', 'padding':'15px'}}>
+                    <Button 
+                        title="Login" 
+                        type="outline"
+                        onPress={() =>this.onLogin(state)}>
+                        icon={<Icon name="unlock-alt" size={15} color="white"/>}
+                    </Button>
                 </View>
             </View>
         );

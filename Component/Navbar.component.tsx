@@ -18,7 +18,6 @@ export class NavBar extends React.Component<NavBarProps, any> {
                         <Text>Profile</Text>
                     </TouchableHighlight>
                 </View>
-
             </View>
         );
     }

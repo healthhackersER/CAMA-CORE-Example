@@ -38,7 +38,7 @@ export class ProfileScreen extends React.Component<ProfileScreenProps, any> {
           <View style={{flex: 0.1}}>
             <NavBar  navigation={navigation}/>
           </View>
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ flex: 1}}>
             {content}
           </View>
         </View>
