@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { View, Text, Button} from 'react-native';
-import {NavBar} from '../Component/Navbar.component'
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Login} from './Login.component';
 import {Profile} from './Profile.component';
@@ -34,7 +33,7 @@ export class ProfileScreen extends React.Component<ProfileScreenProps, any> {
       }
 
       return (
-        <View style={{ flex: 1}}>
+        <View style={{ flex: 1.0}}>
           {content}
         </View>
       );
