@@ -5,7 +5,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import {createAppContainer } from 'react-navigation';
 import {HomeScreen} from './Screens/Home.screen';
 import {ProfileScreen} from './Profile/Profile.screen';
-import {DatabaseScreen} from './Screens/Database.screen';
+import {DatabaseScreen} from './Database/Database.screen';
 import {ModuleScreen} from './Screens/Module.screen';
 
 
