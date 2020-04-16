@@ -43,19 +43,17 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
     const navigation = this.props.navigation;
 
     return (
-      <View style={{ flex: 1, padding: '10px'}}>
+      <View style={{ flex: 1, padding:10}}>
         <DBStatus db_stats={this.state.db}/>
-        <View style={{ flex: 0.3, alignItems: 'center', justifyContent: 'center', padding:'20%' }}>
-              <View>
-                <Input 
-                        label='New DB Entry'
-                        placeholder={"Input text of new datase entry"} 
-                        onChangeText={text => this.NewEntry = {id: -1, text: text}}
-                />
-                <View style={{ flex:0.2, width:'100%', padding:'10px'}}>
-                  <Button title="INSERT" onPress={() =>this.insertEntry(this.NewEntry)}></Button>
-                </View>
-              </View>
+        <View style={{ flex: 0.3, alignItems: 'center', justifyContent: 'center' }}>
+          <Input
+                  label='New Entry'
+                  placeholder={"Input text of new datase entry"} 
+                  onChangeText={text => this.NewEntry = {id: -1, text: text}}
+          />
+          <View style={{ flex:0.2, width:'100%', padding:10}}>
+            <Button title="INSERT" onPress={() =>this.insertEntry(this.NewEntry)}></Button>
+          </View>
         </View>
         <View style={{flex: 0.7, alignItems:"stretch", justifyContent:"flex-end"}}>
           <Text>SQLite not supported on your system</Text>
