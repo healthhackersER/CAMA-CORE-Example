@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import { WebView } from 'react-native-webview';
 
 interface ModuleProps extends React.Props<any> {
