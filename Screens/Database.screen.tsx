@@ -1,7 +1,6 @@
 
 import React from 'react';
 import {View, Text, FlatList, Button, Platform} from 'react-native';
-import {NavBar} from '../Component/Navbar.component'
 import {MetaInfoInput} from '../Component/MetaInfo.input.component'
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as SQLite from "expo-sqlite";
@@ -91,11 +90,6 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
     const navigation = this.props.navigation;
     return (
       <View style={{ flex: 1}}>
-        <View style={{flex: 0.1}}>
-          <NavBar  navigation={navigation}/>
-        </View>
-        {//  Create a Textinput field with a button that will send its value to the database
-        }
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>This is the {navigation.state.routeName} screen</Text> 
           <View>
