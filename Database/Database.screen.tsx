@@ -1,9 +1,10 @@
 
 import React from 'react';
-import {View, Text, FlatList, Platform} from 'react-native';
-import { Input, Button, Icon, Tooltip} from 'react-native-elements';
+import {View, Text, Platform} from 'react-native';
+import { Input, Button, Icon} from 'react-native-elements';
 import store from './Store/SQLiteStore'
 import {DBStatus} from './Components/DBStatus.component'
+import {DBInfo} from './Components/DBStatusInfo.component'
 
 interface DatabaseScreenProps extends React.Props<any> {
     navigation: any
@@ -55,10 +56,9 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
             <Button title="INSERT" onPress={() =>this.insertEntry(this.NewEntry)}></Button>
           </View>
         </View>
+        
         <View style={{flex: 0.7, alignItems:"stretch", justifyContent:"flex-end"}}>
-          <Text>SQLite not supported on your system</Text>
-          <Text>{`${Platform.OS} - [${Platform.Version}]`}</Text>
-          <Text>{JSON.stringify(this.state)}</Text>
+          <DBInfo db_state={this.state}/>
         </View>
       </View>
     );
