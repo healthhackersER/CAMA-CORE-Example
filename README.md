@@ -82,3 +82,71 @@ You can do a walkthrough of the bare workflow later on.
 [Checkout our Detailed Guide](https://github.com/healthhackersER/CAMA-CORE-Example/wiki/Installation)
    
  
+## Debugging
+### Android Emulator
+1. Start an android emulator  
+   ```emulator @avd_name [ {-option [value]} … ]```  
+   - Example: ```emulator emulator-5554```
+   - Find available avd: ```adb devices```
+   - ✅ Result: **Android device running**
+
+### React-Native Android
+2. Start the React-Native Android  
+   ```npm run android```
+   or
+   ```react-native run-android```
+
+   - ✅ Result: Node Window - React-Native
+     - To reload the app press "r"
+     - To open developer menu press "d"
+
+### VSCode Debugging
+3. Visual Studio - Attach to packager
+   - *Prerequisite*: Install React-Native-tools Extension
+   - Execute Configuration: ```Attach to packger```  
+      Result **DEBUG CONSOLE**:
+      ```
+      OS: win32 x64
+      Adapter node: v12.8.1 x64
+      vscode-chrome-debug-core: 6.8.8
+      Der Debugger-App-Worker wird gestartet.
+      Es wurde eine Verbindung zwischen dem Proxy (Paketerstellungs-Manager) und der React Native-Anwendung eingerichtet.
+      ```
+   - ✅ Result: VSCode attached to Packager
+
+### Start Debugging 🏁
+**Helpful Sources and Tutorials**
+- [How to Debug React Native Apps Using Expo and VSCode](https://journal.highlandsolutions.com/how-to-debug-react-native-apps-using-expo-and-vscode-c42353b12311)
+- [4 Step Guide To Debug React Native Application in VSCode.[iOS][Part One]](https://medium.com/@tunvirrahmantusher/react-native-debug-with-vscode-in-simple-steps-bf39b6331e67)
+
+### Android Studio
+**Tutorials**
+- [**Android** Debug with VS Code](https://medium.com/@tunvirrahmantusher/android-debug-with-vscode-for-react-native-96f54d73462a)
+- [**IOS** Debug with VS Code](https://medium.com/@tunvirrahmantusher/android-debug-with-vscode-for-react-native-96f54d73462a)
+
+**List available devices**:
+
+```
+adb devices
+```
+**Output**:
+```
+List of devices attached
+BH900AY0GY      unauthorized
+emulator-5554   device
+```
+- **BH900AY0GY**: Physical devices attached via USB with usb debugging enabled
+- **emulator-5554**: Android Virtual Device
+
+#### Errors
+```react-native run-android```
+
+> Task **:app:transformNativeLibsWithMergeJniLibsForDebug** FAILED
+
+**Solution**: Clean Gradle Files
+
+```cd ./android && ./gradelw clean```
+
+#### Packages
+- [React-Native/Redux/Snippets](https://marketplace.visualstudio.com/items?itemName=EQuimper.react-native-react-redux-snippets-for-es6-es7-version-standard)
+- [React Native Tools](https://marketplace.visualstudio.com/items?itemName=msjsdiag.vscode-react-native)
