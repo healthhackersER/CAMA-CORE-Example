@@ -49,7 +49,7 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
         <View style={{ flex: 0.3, alignItems: 'center', justifyContent: 'center' }}>
           <Input
                   label='New Entry'
-                  placeholder={"Input text of new datase entry"} 
+                  placeholder={"Input text for new entry"} 
                   onChangeText={text => this.NewEntry = {id: -1, text: text}}
           />
           <View style={{ flex:0.2, width:'100%', padding:10}}>
