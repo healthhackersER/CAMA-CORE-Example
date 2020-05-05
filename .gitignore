@@ -56,3 +56,4 @@ buck-out/
 *.jsbundle
 .expo/
 package-lock.json
+android/app/src/main/java/com/camacoreexpo/generated/BasePackageList.java

@@ -4,7 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
             "name": "Debug Android",
             "cwd": "${workspaceFolder}",
@@ -31,7 +30,7 @@
             "cwd": "${workspaceFolder}",
             "type": "reactnative",
             "request": "attach",
-            "port": "19001",
+            "port": "8081",
             "sourceMaps": true
         },
         {
@@ -45,7 +44,7 @@
             "type": "Debug Chrome",
             "request": "launch",
             "name": "Chrome: Launch",
-            "url": "http://localhost:19006",
+            "url": "http://localhost:8081",
             "webRoot": "${workspaceFolder}"
         },
     ]

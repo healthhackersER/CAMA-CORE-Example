@@ -1,0 +1,5 @@
+{
+    "git.ignoreLimitWarning": true,
+    "react-native.android.runArguments.simulator": ["--deviceId", "emulator-5554", "--no-packager", "--no-jetifier"],
+    "react-native.android.runArguments.device": ["--project-path", "android", "--deviceId", "BH900AY0GY"],
+}
