@@ -1,26 +1,25 @@
 import React, {Component} from 'react';
 import {View , Platform} from 'react-native';
 import { Text} from 'react-native-elements';
+import {DBManager} from '../Store/DBManager'
 
-interface DBInfoProps extends React.Props<any> {
-    db_state: any
+interface DBProps extends React.Props<any> {
+    db: DBManager
 }
 
-export class DBInfo extends Component<DBInfoProps, any> {
+export class DBInfo extends Component<DBProps, any> {
     constructor(props) {
         super(props)
     }
    
     render() {
         /** Success Element with Green Icon */
-        if(this.props.db_state.db.Status){
+        if(this.props.db.isOnline()){
             return <View style={{flex: 0.7, alignItems:"stretch", justifyContent:"flex-end"}}>
                 <Text h3>Platform</Text>
                 <Text>{`${Platform.OS} - [${Platform.Version}]`}</Text>
                 <Text h3>DB State</Text>
-                <Text>{JSON.stringify(this.props.db_state.db)}</Text>
-                <Text h4>DB</Text>
-                <Text>{JSON.stringify(this.props.db_state.DB)}</Text>
+                <Text>{JSON.stringify(this.props.db)}</Text>
             </View>
         } 
         /** Error Element with Red Icon and Error Message */
@@ -30,7 +29,7 @@ export class DBInfo extends Component<DBInfoProps, any> {
                 <Text h3>Platform</Text>
                 <Text>{`${Platform.OS} - [${Platform.Version}]`}</Text>
                 <Text h3>DB State</Text>
-                <Text>{JSON.stringify(this.props.db_state)}</Text>
+                <Text>{JSON.stringify(this.props.db)}</Text>
             </View>
         }
     }

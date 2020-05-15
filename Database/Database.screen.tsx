@@ -2,10 +2,11 @@
 import React from 'react';
 import {View, Text, Platform} from 'react-native';
 import { Input, Button, Icon} from 'react-native-elements';
-import store from './Store/SQLiteStore'
-import {Entry} from './Store/SQLiteStore'
+import store from './Store/DBStore'
+import {Entry} from './Store/DBManager'
 import {DBStatus} from './Components/DBStatus.component'
-import {DBInfo} from './Components/DBStatusInfo.component'
+import {DBInfo} from './Components/DBInfo.component'
+import {DBTable} from './Components/DBTable.component'
 
 interface DatabaseScreenProps extends React.Props<any> {
     navigation: any
@@ -29,6 +30,13 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
       value: entry
     })
   };
+
+  deleteEntry = async(id: number) => {
+    store.dispatch({
+      type: "DELETE",
+      value: id
+    })
+  };
   
   static navigationOptions = {  
     title: 'Database Screen',
@@ -41,13 +49,11 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
   };
 
   render() {
-    console.log(JSON.stringify(this.state))
     const navigation = this.props.navigation;
 
     return (
       <View style={{ flex: 1, padding:10}}>
-        <DBStatus db_stats={this.state.db}/>
-        <View style={{ flex: 0.3, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 0.2, alignItems: 'center', justifyContent: 'center' }}>
           <Input
                   label='New Entry'
                   placeholder={"Input text for new entry"} 
@@ -57,9 +63,8 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
             <Button title="INSERT" onPress={() =>this.insertEntry(this.NewEntry)}></Button>
           </View>
         </View>
-        
-        <View style={{flex: 0.7, alignItems:"stretch", justifyContent:"flex-end"}}>
-          <DBInfo db_state={this.state}/>
+        <View style={{flex: 0.8, alignItems:"stretch"}}>
+          <DBTable db={this.state.DB}></DBTable>
         </View>
       </View>
     );

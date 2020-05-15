@@ -58,3 +58,6 @@ buck-out/
 package-lock.json
 android/app/src/main/java/com/camacoreexpo/generated/BasePackageList.java
 web-build/
+.vscode/.react/debuggerWorker.js
+.vscode/.react/index.bundle
+.vscode/.react/index.map
