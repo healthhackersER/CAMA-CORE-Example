@@ -3,6 +3,7 @@ import React from 'react';
 import {View, Text, Platform} from 'react-native';
 import { Input, Button, Icon} from 'react-native-elements';
 import store from './Store/SQLiteStore'
+import {Entry} from './Store/SQLiteStore'
 import {DBStatus} from './Components/DBStatus.component'
 import {DBInfo} from './Components/DBStatusInfo.component'
 
@@ -12,20 +13,20 @@ interface DatabaseScreenProps extends React.Props<any> {
 }
 
 export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
-  NewEntry: {id: number, text: string}
+  NewEntry: Entry;
   constructor(props) { 
     super(props);
     this.state = store.getState();
       store.subscribe(() => {
       this.setState(store.getState());
     });
-    this.NewEntry = {id: -1, text: ''};
+    this.NewEntry = new Entry(-1, '');
   }
 
-  insertEntry = async (entry) => {
+  insertEntry = async (entry: Entry) => {
     store.dispatch({
       type: "INSERT",
-      value: {Entry: entry}
+      value: entry
     })
   };
   
@@ -50,7 +51,7 @@ export class DatabaseScreen extends React.Component<DatabaseScreenProps, any> {
           <Input
                   label='New Entry'
                   placeholder={"Input text for new entry"} 
-                  onChangeText={text => this.NewEntry = {id: -1, text: text}}
+                  onChangeText={text => this.NewEntry = new Entry(-1, text)}
           />
           <View style={{ flex:0.2, width:'100%', padding:10}}>
             <Button title="INSERT" onPress={() =>this.insertEntry(this.NewEntry)}></Button>

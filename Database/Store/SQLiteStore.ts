@@ -4,98 +4,109 @@ import * as SQLite from "expo-sqlite";
 
 export class Entry {
   id: number;
-  value: string
+  value: string;
+  type: string;
+  constructor(id: number, value: string){
+    this.id = id;
+    this.value = value;
+    this.type = Entry.constructor.name
+  }
 }
 
-class DBManager {
+class SQLiteInterface {
   db: any;
-  tables = [];
+  db_name: string;
   constructor(db_name) {
     if(this.isSQLiteAvailable){
-      this.db = this.openDB(db_name);
+      this.db_name = db_name;
     } else {
       throw new Error("SQLite is not available on your system!")
     }
   }
-
   isSQLiteAvailable(){
     return ['ios', 'android'].includes(Platform.OS);
   }
-  openDB(db_name) {
+  openDB() {
     if(SQLite){
       try {
-        this.db = SQLite.openDatabase(db_name);
-        this.getTables();
+        this.db = SQLite.openDatabase(this.db_name);
+        return this.db;
       } catch (e) {
-        console.error(`Unable to open database ${db_name} - ${e.message}`);
+        console.error(`Unable to open database ${this.db_name} - ${e.message}`);
       }
     }
+    return null;
   }
-  async getTables() {
-    return this.db.transaction(tx => {
-      tx.executeSql("select * from sys.Tables", [], (tx, results) => {
-        var temp = [];
-        for (let i = 0; i < results.rows.length; ++i) {
-          temp.push(results.rows.item(i));
-        }
-        this.tables = temp;
-        console.log(JSON.stringify(temp));
+   
+  async transaction(query: string, param: any){
+    const db = this.db ? this.db : this.openDB();
+    return new Promise((resolve, reject) => {
+        let result: SQLResultSet = null;
+        this.db.transaction(tx => {
+            tx.executeSql(query, param, (_, results) => {
+              console.log(JSON.stringify(results));
+              result = results;
+            });
+        }, (e) => {
+          console.error(`ERROR [${query}]: ${e.message}`);
+          reject(e);
+        }, () => {
+          console.log(`SUCCESS [${query}]`);
+          resolve(result);
+        })
       });
-    }, (e) => {
-      console.error(`Get TABLES ERROR: ${e.message}`);
-    }, (success) => {
-      console.log("Get TABLES SUCCESS");
-    });
   }
-  async createTable(table_name) {
-    try {
-      return this.db.transaction(tx => {
-        tx.executeSql(`create table if not exists ? (id integer primary key not null, value text);`, [table_name])
-        tx.executeSql('select * from sys.Tables', [], (_, results) => {
-          var temp = [];
-          for (let i = 0; i < results.rows.length; ++i) {
-            temp.push(results.rows.item(i));
-          }
-          this.tables = temp;
-          console.log(JSON.stringify(temp));
+}
+
+class DBManager  extends SQLiteInterface {
+  table = ""
+  entries = []
+  constructor(db_name, table) { 
+    super(db_name) ;
+    this.table = table;
+    this.createTable()
+    .then(() => this.getEntries())
+    .catch(error => console.log(error))
+  }
+
+  async createTable() {
+    return this.transaction(`CREATE TABLE IF NOT EXISTS ${this.table} (id INTEGER PRIMARY KEY NOT NULL, value TEXT, type TEXT)`, []);
+  }
+
+  async dropTable() {
+    return this.transaction(`DROP TABLE IF NOT EXISTS ${this.table}`, []);
+  }
+
+  async insertNewEntry(entry: Entry) {
+      return this.transaction(`INSERT INTO ${this.table} (value, type) VALUES (?, ?)`, [entry.value, entry.type])
+      .then((results) => {
+        console.log(`insertNewEntry [${JSON.stringify(results)}]`)
+        this.getEntry(results.insertId).then((entry: Entry) => {
+          this.entries.push(entry);
         });
-      }, (_, e) => {
-        console.error(`ERROR creating table: ${e.message}`);
-      }, (ResultSet) => {
-        console.log(`Table created SUCCESS ${JSON.stringify(ResultSet)}`);
-      }
-      );
-    } catch (e) {
-      console.error(`Unable to create table ${table_name} - ${e.message}`);
-    }
+      })
   }
-
-  async insertEntry(entry: Entry, table_name: String) {
-      return this.db.transaction( tx => {
-        // Add a new entry with higher ID and Value that was inserted in TextField
-        tx.executeSql(`insert into ${table_name} (id, value) values (?, ?)`, [entry.id, entry.value])
-        tx.executeSql(`select * from ${table_name}`, [], (_, { rows }) =>
-          console.log(JSON.stringify(rows))
-        );
-      }, (_, error) => console.error(error.message),
-      ()=> console.log("Insert Entry SUCCESS")); 
+  async getEntry(id: number) {
+    return this.transaction(`SELECT * FROM ${this.table} WHERE id=${id}`, [])
+    .then((resultSet) => {
+      console.log(`getEntries [${JSON.stringify(resultSet)}]`)
+      return new Entry(-1, "");
+    })
   }
-
-  async getEntries(table_name) {
-    let entries = [];
-    this.db.transaction( tx => {
-      tx.executeSql(`select * from ${table_name}`, [], 
-      (_, { rows }) => {
-        entries = rows._array;
-      }, (_, error) => console.log(error.message));
-    });
-    return entries;
+  async getEntries() {
+    return this.transaction(`SELECT * FROM ${this.table}`, [])
+    .then((resultSet) => {
+      const entries = resultSet.rows._array;
+      console.log(`getEntries [${JSON.stringify(resultSet)}]`)
+      this.entries = entries.map(x => {return new Entry(x.id, x.value)});
+    })
   }
 }
 
 export class StateModel {
   Entries: Array<Entry>;
   Status: Boolean;
+  Request: Promise<StateModel>;
   DB: DBManager;
   db: {
     Name: string;
@@ -106,9 +117,10 @@ export class StateModel {
 }
 
 const defaultState:StateModel = {
-  Entries: new Array<Entry>() ,
+  Entries: new Array<Entry>(),
   Status: true,
-  DB: new DBManager('CaMa_data.db'),
+  DB: null,
+  Request: null,
   db: {
     Table: 'Test',
     Name: 'CaMa_data.db',
@@ -121,19 +133,23 @@ const defaultState:StateModel = {
 
 function SQLiteStore(state=defaultState, action) {
   try {
-    state.db.Status = true;
-    if(state.DB) {
-      state.DB.openDB(state.db.Name);
-      state.DB.createTable(state.db.Table);
+    state.db.Status = true; 
+    if(state.DB == null) {
+      state.DB = new DBManager('CaMa_data.db', 'Test');
     }
     switch(action.type) {
       case "INSERT":
-        const entries = state.DB.insertEntry(action.value.Entry, state.db.Table);
-        return {...state,
-          Entries : entries,
-          Status: true,
-          EntryNew: null
-        }
+       state.DB.insertNewEntry(action.value).then((results) => {
+          return {...state,
+            Request: this,
+            Status: true,
+            EntryNew: null
+          }
+        }, (error) => {
+          state.db.Error = error;
+          return {...state}
+        })
+
       default:
         return state;
     }
