@@ -1,0 +1,11 @@
+LABEL maintainer=omelisra123@gmail.com
+#https://hub.docker.com/r/patwoz/expo-cli
+#baseline of this DOCKERFILE come from this repo
+FROM patwoz/expo-cli:3 
+
+RUN mkdir/CAMA
+WORKDIR /CAMA
+RUN git clone https://github.com/healthhackersER/CAMA-CORE-Example.git
+WORKDIR /CAMA/CAMA-CORE-Example
+RUN npm install
+
